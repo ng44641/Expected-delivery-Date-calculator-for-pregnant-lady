@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expected delivery Date calculator for pregnant lady</title>
+    <style>
+        #cdiv {
+            background-color: blueviolet;
+            width: 100vw; /* 100% of the viewport width */
+            height: 100vh; /* 100% of the viewport height */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        table {
+            border: 2px solid black; /* Added 'solid' and specified color 'black' */
+            border-collapse: collapse; /* Collapse table borders for consistent appearance */
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black; /* Added borders for table cells */
+            padding: 8px;
+            text-align: left;
+        } #h{
+            color: aqua;
+        } #p1{
+            color: chartreuse;
+        }
+    </style>
+</head>
+<body>
+    <div id="cdiv">
+        <h1 id="h">Expected delivery Date calculator for pregnant lady</h1>
+    <p id="p1">Made by Niraj gupta Mobile:9871262592</p><br>
+    Enter LMP Date
+        <input type="date" id="lmpd" placeholder="Enter LMP Date" onchange="calculateDates()">
+        <table>
+            <tr>
+                <th>LMP Date</th>
+                <td id="lmpDate"></td>
+            </tr>
+            <tr>
+                <th>Current Date</th>
+                <td id="currentDate"></td>
+            </tr>
+            <tr>
+                <th>Total Days</th>
+                <td id="totalDays"></td>
+            </tr>
+            <tr>
+                <th>Total Weeks</th>
+                <td id="totalWeeks"></td>
+            </tr>
+            <tr>
+                <th>EXPD Date</th>
+                <td id="expdDate"></td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        function calculateDates() {
+            const lmpDateInput = document.getElementById("lmpd");
+            const lmpDate = new Date(lmpDateInput.value);
+            const currentDate = new Date();
+
+            const daysDiff = Math.floor((currentDate - lmpDate) / (1000 * 60 * 60 * 24));
+            const weeksDiff = Math.floor(daysDiff / 7);
+
+            const expdDate = new Date(lmpDate);
+            expdDate.setMonth(expdDate.getMonth() + 9, expdDate.getDate() + 7);
+
+            document.getElementById("lmpDate").textContent = lmpDate.toDateString();
+            document.getElementById("currentDate").textContent = currentDate.toDateString();
+            document.getElementById("totalDays").textContent = daysDiff + " days";
+            document.getElementById("totalWeeks").textContent = weeksDiff + " weeks";
+            document.getElementById("expdDate").textContent = expdDate.toDateString();
+        }
+    </script>
+</body>
+</html>
